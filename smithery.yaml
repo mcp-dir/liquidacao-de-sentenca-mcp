@@ -1,0 +1,36 @@
+# Smithery configuration for Liquidação de Sentença
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_liquidacao-de-sentenca
+
+name: liquidacao-de-sentenca-mcp
+displayName: "Liquidação de Sentença"
+description: >
+  **Liquidação de sentença** e de débitos para IA. Some parcelas e abatimentos, aplique correção oficial (IPCA-E, INPC, SELIC), juros, multa e honorários, e chegue no valor atualizado. Índices ao vivo, sem login.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/liquidacao-de-sentenca-mcp
+repository: https://github.com/mcp-dir/liquidacao-de-sentenca-mcp
+
+tags:
+  - juridico
+  - legal
+  - liquidacao-de-sentenca
+  - execucao
+  - debitos
+  - brazil
+  - read-only
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_liquidacao-de-sentenca
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_liquidacao-de-sentenca/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
